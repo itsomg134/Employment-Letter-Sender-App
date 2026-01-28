@@ -2,7 +2,9 @@
 
 A professional, user-friendly web application for creating and sending employment letters to candidates. Built with HTML, CSS, and JavaScript.
 
-![App Preview](https://via.placeholder.com/800x400/1a73e8/ffffff?text=Employment+Letter+Sender+App)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
 ## Features ✨
 
