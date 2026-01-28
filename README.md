@@ -148,21 +148,19 @@ Contributions are welcome! Here's how you can help:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments 🙏
+## 📬 Contact
 
-- Icons from [Font Awesome](https://fontawesome.com)
-- Color palette inspired by Google's Material Design
-- UI patterns from modern HR software
+Om Gedam
 
-## Contact 📧
+GitHub: @itsomg134
 
-Project Maintainer: [Your Name](mailto:youremail@example.com)
+Email: omgedam123098@gmail.com
 
-Project Link: [https://github.com/yourusername/employment-letter-sender](https://github.com/yourusername/employment-letter-sender)
+Twitter (X): @omgedam
 
----
+LinkedIn: Om Gedam
 
-## Quick Deploy Options 🚀
+Portfolio: https://ogworks.lovable.app
 
 ### Deploy to GitHub Pages
 
