@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employment Letter Sender</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h1 i {
+            font-size: 2.8rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+        
+        .app-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-section, .preview-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .letter-preview {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 25px;
+            min-height: 500px;
+            max-height: 600px;
+            overflow-y: auto;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .letter-placeholder {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .template-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .template-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #f0f4f8;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .template-btn:hover {
+            background-color: #e3e9f1;
+        }
+        
+        .template-btn.active {
+            background-color: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0d62d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #f0f4f8;
+            color: #444;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e3e9f1;
+        }
+        
+        .btn-success {
+            background-color: #34a853;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #2e9750;
+        }
+        
+        .status-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+        
+        .status-title {
+            font-size: 1.5rem;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-log {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            min-height: 150px;
+            max-height: 250px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .log-entry.success {
+            color: #34a853;
+        }
+        
+        .log-entry.error {
+            color: #ea4335;
+        }
+        
+        .log-entry.info {
+            color: #1a73e8;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+        
+        .letter-content {
+            white-space: pre-line;
+        }
+        
+        .company-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 20px;
+        }
+        
+        .letter-date {
+            text-align: right;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .letter-signature {
+            margin-top: 50px;
+            font-weight: 600;
+        }
+        
+        .letter-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .counter {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .required {
+            color: #ea4335;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-envelope-open-text"></i> Employment Letter Sender</h1>
+            <p class="subtitle">Create and send professional employment letters to candidates with ease. Customize templates, preview letters, and send via email.</p>
+        </header>
+        
+        <div class="app-container">
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-edit"></i> Letter Details</h2>
+                
+                <div class="template-selector">
+                    <div class="template-btn active" data-template="offer">Job Offer</div>
+                    <div class="template-btn" data-template="rejection">Rejection</div>
+                    <div class="template-btn" data-template="appointment">Appointment</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="candidateName">Candidate Name <span class="required">*</span></label>
+                    <input type="text" id="candidateName" placeholder="Enter candidate's full name">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="candidateEmail">Candidate Email <span class="required">*</span></label>
+                        <input type="email" id="candidateEmail" placeholder="candidate@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title <span class="required">*</span></label>
+                        <input type="text" id="jobTitle" placeholder="e.g., Software Engineer">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="salary">Salary/Compensation</label>
+                        <input type="text" id="salary" placeholder="e.g., $75,000 per year">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="companyName">Company Name <span class="required">*</span></label>
+                    <input type="text" id="companyName" placeholder="Your company name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="senderName">Sender Name/Position <span class="required">*</span></label>
+                    <input type="text" id="senderName" placeholder="Your name and position">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customMessage">Additional Message</label>
+                    <textarea id="customMessage" placeholder="Add any additional information or personal message here..."></textarea>
+                    <div class="counter"><span id="charCount">0</span> / 500 characters</div>
+                </div>
+                
+                <div class="actions">
+                    <button class="btn btn-secondary" id="previewBtn">
+                        <i class="fas fa-eye"></i> Preview Letter
+                    </button>
+                    <button class="btn btn-primary" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Letter
+                    </button>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <h2 class="section-title"><i class="fas fa-file-alt"></i> Letter Preview</h2>
+                <div class="letter-preview" id="letterPreview">
+                    <div class="letter-placeholder">Fill out the form and click "Preview Letter" to see your employment letter here.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-section">
+            <h2 class="status-title"><i class="fas fa-history"></i> Sending Status</h2>
+            <div class="status-log" id="statusLog">
+                <div class="log-entry info">Ready to create and send employment letters.</div>
+                <div class="log-entry info">Select a template and fill in the required fields.</div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-secondary" id="clearLogBtn">
+                    <i class="fas fa-trash-alt"></i> Clear Log
+                </button>
+                <button class="btn btn-success" id="saveTemplateBtn">
+                    <i class="fas fa-save"></i> Save as Template
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Employment Letter Sender App &copy; 2023 | This is a demonstration app. Emails are simulated.</p>
+            <p>For actual email sending, backend integration would be required.</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const candidateName = document.getElementById('candidateName');
+        const candidateEmail = document.getElementById('candidateEmail');
+        const jobTitle = document.getElementById('jobTitle');
+        const startDate = document.getElementById('startDate');
+        const salary = document.getElementById('salary');
+        const companyName = document.getElementById('companyName');
+        const senderName = document.getElementById('senderName');
+        const customMessage = document.getElementById('customMessage');
+        const charCount = document.getElementById('charCount');
+        const previewBtn = document.getElementById('previewBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const clearLogBtn = document.getElementById('clearLogBtn');
+        const saveTemplateBtn = document.getElementById('saveTemplateBtn');
+        const letterPreview = document.getElementById('letterPreview');
+        const statusLog = document.getElementById('statusLog');
+        const templateBtns = document.querySelectorAll('.template-btn');
+        
+        // Set default date to 2 weeks from now
+        const today = new Date();
+        const twoWeeksFromNow = new Date(today);
+        twoWeeksFromNow.setDate(today.getDate() + 14);
+        startDate.valueAsDate = twoWeeksFromNow;
+        
+        // Template data
+        const templates = {
+            offer: {
+                name: "Job Offer",
+                subject: "Job Offer: {{jobTitle}} at {{companyName}}",
+                greeting: "Dear {{candidateName}},",
+                body: "We are delighted to offer you the position of {{jobTitle}} at {{companyName}}. After careful consideration of your qualifications and experience, we believe you will be a valuable addition to our team.\n\nYour starting date will be {{startDate}} with a compensation of {{salary}}.\n\nWe look forward to having you join our team and are excited about the contributions you will make to our company.",
+                closing: "Sincerely,\n{{senderName}}"
+            },
+            rejection: {
+                name: "Rejection",
+                subject: "Application Update: {{jobTitle}} at {{companyName}}",
+                greeting: "Dear {{candidateName}},",
+                body: "Thank you for taking the time to apply for the {{jobTitle}} position at {{companyName}}. We appreciate your interest in our company and the effort you put into your application.\n\nAfter careful consideration, we have decided to move forward with other candidates whose qualifications more closely align with our current needs.\n\nWe were impressed with your background and encourage you to apply for future openings that match your skills and experience.",
+                closing: "Best regards,\n{{senderName}}"
+            },
+            appointment: {
+                name: "Appointment",
+                subject: "Appointment Letter: {{jobTitle}} at {{companyName}}",
+                greeting: "Dear {{candidateName}},",
+                body: "We are pleased to formally appoint you as {{jobTitle}} at {{companyName}} effective {{startDate}}.\n\nYour compensation will be {{salary}}. Additional details regarding benefits, work schedule, and reporting structure will be provided during your onboarding.\n\nPlease review this letter and let us know if you have any questions before your start date.",
+                closing: "Sincerely,\n{{senderName}}"
+            }
+        };
+        
+        let selectedTemplate = 'offer';
+        
+        // Event Listeners
+        templateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                templateBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedTemplate = btn.dataset.template;
+                addLogEntry(`Selected ${templates[selectedTemplate].name} template`, 'info');
+                updatePreview();
+            });
+        });
+        
+        customMessage.addEventListener('input', () => {
+            const length = customMessage.value.length;
+            charCount.textContent = length;
+            if (length > 500) {
+                customMessage.value = customMessage.value.substring(0, 500);
+                charCount.textContent = 500;
+                charCount.style.color = '#ea4335';
+            } else if (length > 450) {
+                charCount.style.color = '#fbbc05';
+            } else {
+                charCount.style.color = '#666';
+            }
+        });
+        
+        previewBtn.addEventListener('click', updatePreview);
+        
+        sendBtn.addEventListener('click', sendLetter);
+        
+        clearLogBtn.addEventListener('click', () => {
+            statusLog.innerHTML = '<div class="log-entry info">Log cleared. Ready for new operations.</div>';
+        });
+        
+        saveTemplateBtn.addEventListener('click', () => {
+            addLogEntry('Template saved locally (demo functionality)', 'success');
+            alert('In a real application, this would save your letter as a reusable template.');
+        });
+        
+        // Initialize form fields with sample data for demo
+        function initSampleData() {
+            candidateName.value = "Alex Johnson";
+            candidateEmail.value = "alex.johnson@example.com";
+            jobTitle.value = "Senior Software Engineer";
+            salary.value = "$95,000 per year";
+            companyName.value = "TechSolutions Inc.";
+            senderName.value = "Sarah Miller, HR Director";
+            customMessage.value = "We were particularly impressed with your portfolio and believe you would be a great fit for our development team. Looking forward to working together!";
+            charCount.textContent = customMessage.value.length;
+            
+            updatePreview();
+        }
+        
+        // Update the letter preview
+        function updatePreview() {
+            if (!candidateName.value || !jobTitle.value || !companyName.value || !senderName.value) {
+                letterPreview.innerHTML = '<div class="letter-placeholder">Please fill in all required fields (marked with *) to preview the letter.</div>';
+                return;
+            }
+            
+            const template = templates[selectedTemplate];
+            let letterContent = template.body;
+            
+            // Replace placeholders with actual values
+            letterContent = letterContent.replace(/{{candidateName}}/g, candidateName.value);
+            letterContent = letterContent.replace(/{{jobTitle}}/g, jobTitle.value);
+            letterContent = letterContent.replace(/{{companyName}}/g, companyName.value);
+            letterContent = letterContent.replace(/{{startDate}}/g, formatDate(startDate.value));
+            letterContent = letterContent.replace(/{{salary}}/g, salary.value || 'to be discussed');
+            
+            // Build the complete letter
+            const currentDate = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            let letterHTML = `
+                <div class="company-logo">${companyName.value}</div>
+                <div class="letter-date">${currentDate}</div>
+                <div class="letter-content">
+                    <p><strong>${template.greeting.replace('{{candidateName}}', candidateName.value)}</strong></p>
+                    <p>${letterContent.replace(/\n\n/g, '</p><p>')}</p>
+            `;
+            
+            if (customMessage.value.trim()) {
+                letterHTML += `<p><strong>Additional Note:</strong> ${customMessage.value}</p>`;
+            }
+            
+            letterHTML += `
+                    <p>${template.closing.replace('{{senderName}}', senderName.value)}</p>
+                </div>
+                <div class="letter-signature">${senderName.value}</div>
+                <div class="letter-footer">
+                    <p>${companyName.value} | HR Department</p>
+                    <p>This is an automatically generated employment letter.</p>
+                </div>
+            `;
+            
+            letterPreview.innerHTML = letterHTML;
+            addLogEntry('Letter preview updated', 'info');
+        }
+        
+        // Send the employment letter
+        function sendLetter() {
+            // Validate required fields
+            if (!candidateName.value || !candidateEmail.value || !jobTitle.value || !companyName.value || !senderName.value) {
+                addLogEntry('Please fill in all required fields (marked with *) before sending.', 'error');
+                alert('Please fill in all required fields (marked with *) before sending.');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(candidateEmail.value)) {
+                addLogEntry('Please enter a valid email address for the candidate.', 'error');
+                alert('Please enter a valid email address for the candidate.');
+                return;
+            }
+            
+            addLogEntry(`Preparing to send ${templates[selectedTemplate].name} letter to ${candidateEmail.value}...`, 'info');
+            
+            // Simulate sending process
+            setTimeout(() => {
+                addLogEntry('Connecting to email server...', 'info');
+                
+                setTimeout(() => {
+                    addLogEntry('Letter compiled successfully...', 'info');
+                    
+                    setTimeout(() => {
+                        const subject = templates[selectedTemplate].subject
+                            .replace(/{{jobTitle}}/g, jobTitle.value)
+                            .replace(/{{companyName}}/g, companyName.value);
+                        
+                        addLogEntry(`Employment letter sent successfully to ${candidateEmail.value}`, 'success');
+                        addLogEntry(`Subject: ${subject}`, 'info');
+                        
+                        // Show success message
+                        alert(`Employment letter successfully sent to ${candidateEmail.value}!`);
+                    }, 800);
+                }, 800);
+            }, 800);
+        }
+        
+        // Add entry to status log
+        function addLogEntry(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${type}`;
+            
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            
+            statusLog.appendChild(logEntry);
+            statusLog.scrollTop = statusLog.scrollHeight;
+        }
+        
+        // Format date for display
+        function formatDate(dateString) {
+            if (!dateString) return 'to be determined';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+        
+        // Initialize the app with sample data
+        window.addEventListener('DOMContentLoaded', () => {
+            initSampleData();
+            addLogEntry('Employment Letter Sender initialized', 'info');
+        });
+    </script>
+</body>
+</html>
